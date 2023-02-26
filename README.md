@@ -1,6 +1,8 @@
 # Trash CLI
 
-Move your files to a trash directory instead of unlink them for more safety.
+_100% shell implementation._
+
+Move your files to a trash directory instead of unlink them for more safety.  
 Did you `rm -rf` an important directory? No worry! Just look for your files inside `$HOME/.trash`.
 
 ## How to use
