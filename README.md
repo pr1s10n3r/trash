@@ -23,3 +23,5 @@ alias rm="trash"
 ## Roadmap
 
 - [ ] Add unique identifier to deleted files in order to allow duplicates inside the `$HOME/.trash` directory.
+- [ ] Allow long option parameters.
+- [ ] Add `--version` option.

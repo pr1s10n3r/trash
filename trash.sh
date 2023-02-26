@@ -11,9 +11,13 @@ print_error_help() {
 move_trash_files() {
   files=("$@")
   for filepath in "${files[@]}"; do
-    mv $filepath $HOME/.trash
-    if [ $verbose -eq 1 ]; then
-      echo "removed '$filepath'"
+    if [ -f $filepath ]; then
+      mv $filepath $HOME/.trash
+      if [ $verbose -eq 1 ]; then
+        echo "removed '$filepath'"
+      fi
+    elif [ ! $force -eq 1 ]; then
+      echo "$name: cannot move '$filepath': No such file or directory"
     fi
   done
 }
@@ -22,7 +26,10 @@ usage() {
   echo "Usage: $name [OPTION]... [FILE]..."
   echo 'Move FILE(s) to $HOME/.trash'
   echo
+  echo '  -f, --force           ignore nonexistent files and arguments, never prompt'
   echo '  -v, --verbose         explain what is being done'
+  echo '  -h, --help            display this help text and exit'
+  echo '      --version         output version information and exit'
   exit 0
 }
 
@@ -32,6 +39,7 @@ usage() {
 OPTIND=1
 
 ### Argument parsing
+force=0
 verbose=0
 
 if [ "${#@}" -lt 1 ]
@@ -39,10 +47,11 @@ then
   print_error_help "missing operand"
 fi
 
-# NOTE: 'r' and 'f' are added but not required by `mv`
+# NOTE: 'r' is added but not required by `mv`
 while getopts "h?vrf" opt; do
   case "$opt" in
     h) usage ;;
+    f) force=1 ;;
     v) verbose=1 ;;
   esac
 done
