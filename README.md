@@ -1,6 +1,7 @@
 # Trash CLI
 
 Move your files to a trash directory instead of unlink them for more safety.
+Did you `rm -rf` an important directory? No worry! Just look for your files inside `$HOME/.trash`.
 
 ## How to use
 
@@ -16,3 +17,7 @@ You can use it directly or create an alias for `rm` like this:
 # File .bashrc/.zshrc/etc
 alias rm="trash"
 ```
+
+## Roadmap
+
+[ ] Add unique identifier to deleted files in order to allow duplicates inside the `$HOME/.trash` directory.
