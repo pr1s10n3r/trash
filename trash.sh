@@ -9,8 +9,9 @@ print_error_help() {
 }
 
 move_trash_files() {
-  for filepath in "$1"; do
-    mv $1 $HOME/.trash
+  files=("$@")
+  for filepath in "${files[@]}"; do
+    mv $filepath $HOME/.trash
     if [ $verbose -eq 1 ]; then
       echo "removed '$filepath'"
     fi
